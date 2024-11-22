@@ -1,28 +1,40 @@
 import { View, Text, SafeAreaView, FlatList, ListHeaderComponent, Image, ListEmptyComponent } from 'react-native'
 import { RefreshControl } from 'react-native'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {images} from '../../constants'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
+import VideoCard from '../../components/VideoCard'
+import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
+
 
 import React from 'react'
+import useAppwrite from '../../lib/useAppwrite'
+
 
 const Home = () => {
+
+  const {data: posts, refetch} = useAppwrite(getAllPosts)
+  const {data: latestPosts} = useAppwrite(getLatestPosts)
   const [refreshing, setRefreshing] = useState(false);
+
+  console.log(posts)
 
   const onRefresh = async () => {
     setRefreshing(true);
+    await refetch(); 
     setRefreshing(false);
   };
   return (
     <SafeAreaView className="bg-primary h-full">
         <FlatList
         // data={[{ id: 1 }]}
-        data ={[]}
+        // data ={[]}
+        data={posts}
         keyExtractor={(item) => item. $id}
         renderItem={({ item }) => (
-        <Text className="text-3xl text-white">{item.id}</Text>
+        <VideoCard video={item} />
         )}
         ListHeaderComponent={() => (
           <View className="flex my-6 px-4 space-y-6">
@@ -32,7 +44,7 @@ const Home = () => {
                 Welcome Back
             </Text>
             <Text className="text-2xl font-psemibold text-white">
-              JSMastery
+              Rayyan
              </Text>
           </View>
 
@@ -48,9 +60,9 @@ const Home = () => {
 
           <SearchInput /> 
           <Text className='text-gray-100 text-lg font-pregular mb-3'>
-            Latest Videos
+            Latest Bounties
           </Text>
-          <Trending posts={[{id:1}, {id:2}, {id:3}] ?? []}/> 
+          <Trending posts={latestPosts ?? []}/> 
           </View>
         )}
         ListEmptyComponent={() => (

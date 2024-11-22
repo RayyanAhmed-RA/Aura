@@ -21,7 +21,7 @@ const FormField = ({
         <TextInput
           className="flex-1 text-white font-psemibold text-base"
           value={value}
-          placeholder="Search for a video topic..."
+          placeholder="Search for a gig..."
           placeholderTextColor="#7B7B8B"
           onChangeText={handleChangeText}
           secureTextEntry={title === "Password" && !showPassword}

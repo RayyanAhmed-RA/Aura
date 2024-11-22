@@ -35,10 +35,10 @@ export default function App() {
                 
                 <View className="relative mt-5">
                     
-                    <Text className="text-3xl text-white font-bold text-center">
-                        Discover Endless possbilities with
-                        <Text className="text-blue-500">
-                        Aora
+                    <Text className="text-3xl text-black font-bold text-center">
+                        Discover Endless possbilities with 
+                        <Text className="text-secondary">
+                         Demo
                         </Text>
                     </Text>
                     
@@ -48,7 +48,7 @@ export default function App() {
                     />
                 </View>
                 
-                <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
+                <Text className="text-sm font-pregular text-gray-500 mt-7 text-center">
                 Where Creativity Meets Innovation: Embark on a Journey of Limitless
                 Exploration with Aora
                 </Text>
